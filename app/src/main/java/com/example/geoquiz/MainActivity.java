@@ -73,4 +73,8 @@ public class MainActivity extends AppCompatActivity {
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
     }
+
+    private void checkAnswer(boolean userPressedTrue){
+
+    }
 }
