@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String TAG = "MainActivity";
+
     private Button mTrueButton;
     private Button mFalseButton;
     private ImageButton mNextButton;
