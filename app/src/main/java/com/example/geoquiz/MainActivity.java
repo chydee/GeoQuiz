@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
+    public static final String KEY_INDEX = "index";
 
     private Button mTrueButton;
     private Button mFalseButton;
@@ -36,6 +37,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_main);
+
+        if (savedInstanceState != null){
+            mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
+        }
 
         mTrueButton = findViewById(R.id.true_button);
         mFalseButton = findViewById(R.id.false_button);
@@ -95,6 +100,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Log.d(TAG, "onResume() called");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.d(TAG, "onPause() called");
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        Log.i(TAG, "onSaveInstanceState");
+        savedInstanceState.putInt(KEY_INDEX, mCurrentIndex);
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         Log.d(TAG, "onStop() called");
@@ -106,17 +130,9 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onDestroy() called");
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.d(TAG, "onPause() called");
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d(TAG, "onResume() called");
-    }
+
+
 
 
     private void updateQuestion(){
