@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
         mTrueButton = findViewById(R.id.true_button);
         mFalseButton = findViewById(R.id.false_button);
-        mNextButton = findViewById(R.id.next_button);
         mQuestionTextView = findViewById(R.id.question_text_view);
         updateQuestion();
 
@@ -59,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
+        mNextButton = findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
