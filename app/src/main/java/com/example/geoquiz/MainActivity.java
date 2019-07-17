@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
             new Question(R.string.question_asia, true)
     };
 
+    private int mQuestionBankSize = mQuestionBank.length;
+
     private int mCurrentIndex = 0;
 
     @Override
@@ -38,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onCreate(Bundle) called");
         setContentView(R.layout.activity_main);
 
-        if (savedInstanceState != null){
+        if (savedInstanceState != null) {
             mCurrentIndex = savedInstanceState.getInt(KEY_INDEX, 0);
         }
 
@@ -48,8 +50,7 @@ public class MainActivity extends AppCompatActivity {
         updateQuestion();
 
 
-
-        mTrueButton.setOnClickListener(new View.OnClickListener(){
+        mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 checkAnswer(true);
@@ -57,15 +58,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mFalseButton.setOnClickListener(new View.OnClickListener(){
+        mFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               checkAnswer(false);
-               mTrueButton.setEnabled(false);
+                checkAnswer(false);
+                mTrueButton.setEnabled(false);
             }
 
         });
-
 
 
         mNextButton = findViewById(R.id.next_button);
@@ -73,29 +73,27 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
-                updateQuestion();
-                if (mCurrentIndex > 0){
-                    mPreviousButton.setEnabled(true);
+                if (mCurrentIndex == mQuestionBankSize - 1) {
+                    mNextButton.setEnabled(false);
                 }
+                mPreviousButton.setEnabled(true);
+                updateQuestion();
             }
         });
 
 
-
-       mPreviousButton = findViewById(R.id.previous_button);
+        mPreviousButton = findViewById(R.id.previous_button);
         mPreviousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
-                if (mCurrentIndex <= 1){
+                if (mCurrentIndex <= 1) {
                     mPreviousButton.setEnabled(false);
                 }
+                mNextButton.setEnabled(true);
                 updateQuestion();
             }
         });
-
-
-
 
 
     }
@@ -138,28 +136,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-
-    private void updateQuestion(){
+    private void updateQuestion() {
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
         mFalseButton.setEnabled(true);
         mTrueButton.setEnabled(true);
     }
 
-    private void checkAnswer(boolean userPressedTrue){
+    private void checkAnswer(boolean userPressedTrue) {
         boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
 
         int messageResId = 0;
-        if (userPressedTrue == answerIsTrue){
+        if (userPressedTrue == answerIsTrue) {
             messageResId = R.string.correct_toast;
         } else {
             messageResId = R.string.incorrect_toast;
         }
 
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
+
+    }
+
+    private void countScore() {
+
     }
 
 }
