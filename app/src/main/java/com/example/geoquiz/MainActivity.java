@@ -46,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
         mFalseButton = findViewById(R.id.false_button);
         mQuestionTextView = findViewById(R.id.question_text_view);
         updateQuestion();
-        mFalseButton.setEnabled(true);
-        mTrueButton.setEnabled(true);
+
 
 
         mTrueButton.setOnClickListener(new View.OnClickListener(){
@@ -144,6 +143,8 @@ public class MainActivity extends AppCompatActivity {
     private void updateQuestion(){
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
+        mFalseButton.setEnabled(true);
+        mTrueButton.setEnabled(true);
     }
 
     private void checkAnswer(boolean userPressedTrue){
