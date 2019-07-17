@@ -46,12 +46,15 @@ public class MainActivity extends AppCompatActivity {
         mFalseButton = findViewById(R.id.false_button);
         mQuestionTextView = findViewById(R.id.question_text_view);
         updateQuestion();
+        mFalseButton.setEnabled(true);
+        mTrueButton.setEnabled(true);
 
 
         mTrueButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 checkAnswer(true);
+                mFalseButton.setEnabled(false);
             }
         });
 
@@ -59,9 +62,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                checkAnswer(false);
+               mTrueButton.setEnabled(false);
             }
 
         });
+
+
 
         mNextButton = findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                 updateQuestion();
                 if (mCurrentIndex > 0){
-                    mPreviousButton.setVisibility(View.VISIBLE);
+                    mPreviousButton.setEnabled(true);
                 }
             }
         });
@@ -80,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
-                if (mCurrentIndex == 0){
-                    mPreviousButton.setVisibility(View.GONE);
+                if (mCurrentIndex <= 1){
+                    mPreviousButton.setEnabled(false);
                 }
                 updateQuestion();
             }
@@ -152,4 +158,5 @@ public class MainActivity extends AppCompatActivity {
 
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
     }
+
 }
