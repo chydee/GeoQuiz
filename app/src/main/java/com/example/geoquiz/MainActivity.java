@@ -68,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
         mNextButton = findViewById(R.id.next_button);
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        mNextButton.setEnabled(true);
 
 
         mPreviousButton = findViewById(R.id.previous_button);
@@ -97,6 +97,8 @@ public class MainActivity extends AppCompatActivity {
                 updateQuestion();
             }
         });
+
+        mPreviousButton.setEnabled(false);
 
 
     }
