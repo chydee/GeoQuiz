@@ -152,12 +152,12 @@ public class MainActivity extends AppCompatActivity {
         int messageResId = 0;
         if (userPressedTrue == answerIsTrue) {
             messageResId = R.string.correct_toast;
-            mScore = mScore + 10;
+            mScore = mScore + 20;
         } else {
             messageResId = R.string.incorrect_toast;
         }
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
-        Log.i(TAG, "Score for "+ mQuestionBank[mCurrentIndex] +" is: " + mScore);
+
 
     }
 
