@@ -32,9 +32,8 @@ public class MainActivity extends AppCompatActivity {
             new Question(R.string.question_asia, true)
     };
 
-    private int mQuestionBankSize = mQuestionBank.length;
-
     private int mCurrentIndex = 0;
+    private int mScore = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,13 +73,14 @@ public class MainActivity extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBankSize;
-                if (mCurrentIndex == mQuestionBankSize - 1) {
+                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                if (mCurrentIndex == mQuestionBank.length - 1) {
                     mNextButton.setEnabled(false);
                 }
                 mPreviousButton.setEnabled(true);
                 updateQuestion();
-                countScore();
+
+
             }
         });
 
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         mPreviousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCurrentIndex = (mCurrentIndex - 1) % mQuestionBankSize;
+                mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
                 if (mCurrentIndex <= 1) {
                     mPreviousButton.setEnabled(false);
                 }
@@ -97,10 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 updateQuestion();
             }
         });
-
-
-
-
 
 
     }
@@ -156,23 +152,14 @@ public class MainActivity extends AppCompatActivity {
         int messageResId = 0;
         if (userPressedTrue == answerIsTrue) {
             messageResId = R.string.correct_toast;
+            mScore = mScore + 10;
         } else {
             messageResId = R.string.incorrect_toast;
         }
-
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
+        Log.i(TAG, "Score for "+ mQuestionBank[mCurrentIndex] +" is: " + mScore);
 
     }
 
-    private void countScore() {
-        int mCurrentScore = 0;
-        boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
-        for ( mCurrentIndex = 0; mCurrentIndex < mQuestionBankSize ; mCurrentIndex++) {
-            if (mQuestionBank[mCurrentIndex].equals(answerIsTrue)){
-                mCurrentScore += 5;
-            }
-        }
-        Toast.makeText(this, "Your Score is: "+ mCurrentScore, Toast.LENGTH_SHORT).show();
-    }
 
 }
