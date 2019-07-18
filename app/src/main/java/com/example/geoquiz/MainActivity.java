@@ -15,11 +15,13 @@ public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivity";
     public static final String KEY_INDEX = "index";
 
+
     private Button mTrueButton;
     private Button mFalseButton;
     private Button mNextButton;
     private Button mPreviousButton;
     private TextView mQuestionTextView;
+
 
     private Question[] mQuestionBank = new Question[]{
             new Question(R.string.question_australia, true),
@@ -72,12 +74,13 @@ public class MainActivity extends AppCompatActivity {
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                mCurrentIndex = (mCurrentIndex + 1) % mQuestionBankSize;
                 if (mCurrentIndex == mQuestionBankSize - 1) {
                     mNextButton.setEnabled(false);
                 }
                 mPreviousButton.setEnabled(true);
                 updateQuestion();
+                countScore();
             }
         });
 
@@ -86,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         mPreviousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mCurrentIndex = (mCurrentIndex - 1) % mQuestionBank.length;
+                mCurrentIndex = (mCurrentIndex - 1) % mQuestionBankSize;
                 if (mCurrentIndex <= 1) {
                     mPreviousButton.setEnabled(false);
                 }
@@ -94,6 +97,10 @@ public class MainActivity extends AppCompatActivity {
                 updateQuestion();
             }
         });
+
+
+
+
 
 
     }
@@ -158,7 +165,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void countScore() {
-
+        int mCurrentScore = 0;
+        boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
+        for ( mCurrentIndex = 0; mCurrentIndex < mQuestionBankSize ; mCurrentIndex++) {
+            if (mQuestionBank[mCurrentIndex].equals(answerIsTrue)){
+                mCurrentScore += 5;
+            }
+        }
+        Toast.makeText(this, "Your Score is: "+ mCurrentScore, Toast.LENGTH_SHORT).show();
     }
 
 }
