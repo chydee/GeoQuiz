@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = "MainActivity";
     public static final String KEY_INDEX = "index";
+    public static final String EXTRA_ANSWER_IS_TRUE = "com.example.geoquiz.answer_is_true";
 
 
     private Button mTrueButton;
