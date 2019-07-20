@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                mIsCheater = false;
                 if (mCurrentIndex == mQuestionBank.length - 1) {
                     mNextButton.setEnabled(false);
                 }
@@ -184,18 +185,23 @@ public class MainActivity extends AppCompatActivity {
         boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
 
         int messageResId = 0;
-        String scoreReport;
-        if (userPressedTrue == answerIsTrue) {
-            messageResId = R.string.correct_toast;
-            mScore = mScore + 20;
-            scoreReport = "Your current score: " + mScore;
+        String scoreReport = null;
+        if (mIsCheater){
+            messageResId = R.string.judgment_toast;
         } else {
-            messageResId = R.string.incorrect_toast;
-            scoreReport = "Your current score is still: " + mScore;
+            if (userPressedTrue == answerIsTrue) {
+                messageResId = R.string.correct_toast;
+                mScore = mScore + 20;
+                scoreReport = "Your current score: " + mScore;
+            } else {
+                messageResId = R.string.incorrect_toast;
+                scoreReport = "Your current score is still: " + mScore;
+            }
         }
 
+
         Toast.makeText(this, messageResId, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, scoreReport, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, scoreReport, Toast.LENGTH_SHORT).show();
     }
 
 
