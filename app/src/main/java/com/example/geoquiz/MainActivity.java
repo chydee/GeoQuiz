@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
@@ -149,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode != Activity.RESULT_OK){
             return;
         }
@@ -185,17 +184,17 @@ public class MainActivity extends AppCompatActivity {
         boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
 
         int messageResId = 0;
-        String scoreReport = null;
+       // String scoreReport = null;
         if (mIsCheater){
             messageResId = R.string.judgment_toast;
         } else {
             if (userPressedTrue == answerIsTrue) {
                 messageResId = R.string.correct_toast;
-                mScore = mScore + 20;
-                scoreReport = "Your current score: " + mScore;
+               // mScore = mScore + 20;
+                //scoreReport = "Your current score: " + mScore;
             } else {
                 messageResId = R.string.incorrect_toast;
-                scoreReport = "Your current score is still: " + mScore;
+                //scoreReport = "Your current score is still: " + mScore;
             }
         }
 
