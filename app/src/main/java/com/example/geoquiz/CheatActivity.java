@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CheatActivity extends AppCompatActivity {
 
     public static final String EXTRA_ANSWER_IS_TRUE = "com.example.geoquiz.answer_is_true";
+    public static final String EXTRA_ANSWER_SHOWN = "com.example.geoquiz.answer_shown";
 
     private TextView mAnswerTextView;
 
@@ -43,5 +44,11 @@ public class CheatActivity extends AppCompatActivity {
                     }
                 }
             });
+    }
+
+    private void setAnswerShownResult(boolean answerIsShown){
+        Intent data = new Intent();
+        data.putExtra(EXTRA_ANSWER_IS_TRUE, answerIsShown);
+        setResult(RESULT_OK, data);
     }
 }
