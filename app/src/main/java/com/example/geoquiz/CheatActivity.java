@@ -32,7 +32,7 @@ public class CheatActivity extends AppCompatActivity {
     }
 
     public static boolean wasAnswerShown(Intent result){
-        return result.getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
+        return result.getBooleanExtra(EXTRA_ANSWER_SHOWN, false);
     }
 
     @Override
@@ -42,7 +42,9 @@ public class CheatActivity extends AppCompatActivity {
 
         if (savedInstanceState != null){
             mAnswerIsTrue = savedInstanceState.getBoolean(KEY_INDEX, false);
+            setAnswerShownResult(true);
         }
+
             mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
 
             mAnswerTextView = findViewById(R.id.answer_text_view);
@@ -66,6 +68,7 @@ public class CheatActivity extends AppCompatActivity {
         super.onSaveInstanceState(savedInstanceState);
         Log.d(TAG, "onSaveInstance called ");
         savedInstanceState.putBoolean(KEY_INDEX, mAnswerIsTrue);
+        setAnswerShownResult(true);
     }
 
     private void setAnswerShownResult(boolean answerIsShown){
