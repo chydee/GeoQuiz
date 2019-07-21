@@ -14,6 +14,8 @@ public class CheatActivity extends AppCompatActivity {
     public static final String EXTRA_ANSWER_IS_TRUE = "com.example.geoquiz.answer_is_true";
     public static final String EXTRA_ANSWER_SHOWN = "com.example.geoquiz.answer_shown";
 
+
+
     private TextView mAnswerTextView;
 
     private boolean mAnswerIsTrue;
@@ -54,6 +56,7 @@ public class CheatActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putBoolean();
     }
 
     private void setAnswerShownResult(boolean answerIsShown){
