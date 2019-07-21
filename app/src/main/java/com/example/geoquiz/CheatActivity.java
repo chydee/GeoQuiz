@@ -39,6 +39,10 @@ public class CheatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
+
+        if (savedInstanceState != null){
+            mAnswerIsTrue = savedInstanceState.getBoolean(KEY_INDEX, false);
+        }
             mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
 
             mAnswerTextView = findViewById(R.id.answer_text_view);
