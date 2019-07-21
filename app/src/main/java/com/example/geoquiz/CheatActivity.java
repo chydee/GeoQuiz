@@ -51,6 +51,11 @@ public class CheatActivity extends AppCompatActivity {
             });
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
     private void setAnswerShownResult(boolean answerIsShown){
         Intent data = new Intent();
         data.putExtra(EXTRA_ANSWER_IS_TRUE, answerIsShown);
