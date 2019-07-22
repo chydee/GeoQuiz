@@ -14,9 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    public static final String TAG = "MainActivity";
-    public static final String KEY_INDEX = "index";
-    public static final int REQUEST_CODE_CHEAT = 0;
+    private static final String KEY_INDEX = "index";
+    private static final int REQUEST_CODE_CHEAT = 0;
+    private final String TAG = "MainActivity";
 
 
 
@@ -115,11 +115,9 @@ public class MainActivity extends AppCompatActivity {
                 //start cheat activity
                 boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
                 Intent intent = CheatActivity.newIntent(MainActivity.this, answerIsTrue);
-                startActivity(intent);
+                startActivityForResult(intent, REQUEST_CODE_CHEAT);
             }
         });
-
-
     }
 
     @Override
