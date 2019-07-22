@@ -65,16 +65,22 @@ public class CheatActivity extends AppCompatActivity {
                 int cx = mShowAnswerButton.getWidth() / 2;
                 int cy = mShowAnswerButton.getHeight() / 2;
                 float radius = mShowAnswerButton.getWidth();
-                    Animator anim = ViewAnimationUtils
+                Animator anim = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                    anim = ViewAnimationUtils
                             .createCircularReveal(mShowAnswerButton, cx, cy, radius, 0);
+
                     anim.addListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             super.onAnimationEnd(animation);
-                            mShowAnswerButton.setVisibility(View.VISIBLE);
+                            mShowAnswerButton.setVisibility(View.INVISIBLE);
                         }
                     });
                     anim.start();
+                } else {
+                    mShowAnswerButton.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }
