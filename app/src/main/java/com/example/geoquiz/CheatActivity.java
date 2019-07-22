@@ -85,7 +85,7 @@ public class CheatActivity extends AppCompatActivity {
                 }
             }
         });
-        String apiLevel = "API Level " + Build.VERSION.RELEASE;
+        String apiLevel = "API Level " + Build.VERSION.SDK;
         mShowAPILevel = findViewById(R.id.show_api_level);
         mShowAPILevel.setText(apiLevel);
     }
