@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +22,7 @@ public class CheatActivity extends AppCompatActivity {
     private static final String EXTRA_ANSWER_IS_TRUE = "com.example.geoquiz.answer_is_true";
     private static final String EXTRA_ANSWER_SHOWN = "com.example.geoquiz.answer_shown";
 
-    public static final String KEY_INDEX = "index";
+    private static final String KEY_INDEX = "index";
 
     private TextView mAnswerTextView;
 
@@ -84,9 +85,9 @@ public class CheatActivity extends AppCompatActivity {
                 }
             }
         });
-
+        String apiLevel = "API Level " + Build.VERSION.RELEASE;
         mShowAPILevel = findViewById(R.id.show_api_level);
-
+        mShowAPILevel.setText(apiLevel);
     }
 
 
