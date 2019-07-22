@@ -15,7 +15,7 @@ public class CheatActivity extends AppCompatActivity {
     //Log TAG
     public static final String TAG = "CheatActivity";
 
-    public static final String EXTRA_ANSWER_IS_TRUE = "com.example.geoquiz.answer_is_true";
+    private static final String EXTRA_ANSWER_IS_TRUE = "com.example.geoquiz.answer_is_true";
     public static final String EXTRA_ANSWER_SHOWN = "com.example.geoquiz.answer_shown";
 
     public static final String KEY_INDEX = "index";
