@@ -115,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                 //start cheat activity
                 boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
                 Intent intent = CheatActivity.newIntent(MainActivity.this, answerIsTrue);
-                startActivityForResult(intent, REQUEST_CODE_CHEAT);
+                startActivity(intent);
             }
         });
 
