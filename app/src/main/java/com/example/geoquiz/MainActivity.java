@@ -14,10 +14,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final String TAG = "MainActivity";
     private static final String KEY_INDEX = "index";
     private static final int REQUEST_CODE_CHEAT = 0;
-    private final String TAG = "MainActivity";
-
 
 
     private Button mTrueButton;
@@ -38,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private int mCurrentIndex = 0;
-  //  private int mScore = 0;
+    //  private int mScore = 0;
     private boolean mIsCheater;
 
     @Override
@@ -118,6 +117,8 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_CODE_CHEAT);
             }
         });
+
+
     }
 
     @Override
@@ -149,11 +150,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode != Activity.RESULT_OK){
+        if (requestCode != Activity.RESULT_OK) {
             return;
         }
-        if (requestCode == REQUEST_CODE_CHEAT){
-            if (data == null){
+        if (requestCode == REQUEST_CODE_CHEAT) {
+            if (data == null) {
                 return;
             }
             mIsCheater = CheatActivity.wasAnswerShown(data);
@@ -184,13 +185,13 @@ public class MainActivity extends AppCompatActivity {
         boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
 
         int messageResId = 0;
-       // String scoreReport = null;
-        if (mIsCheater){
+        // String scoreReport = null;
+        if (mIsCheater) {
             messageResId = R.string.judgment_toast;
         } else {
             if (userPressedTrue == answerIsTrue) {
                 messageResId = R.string.correct_toast;
-               // mScore = mScore + 20;
+                // mScore = mScore + 20;
                 //scoreReport = "Your current score: " + mScore;
             } else {
                 messageResId = R.string.incorrect_toast;
