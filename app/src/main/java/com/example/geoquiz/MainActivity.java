@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button mNextButton;
     private Button mPreviousButton;
     private Button mCheatButton;
-    private TextView mQuestionTextView;
+    private TextView mQuestionTextView, mCheatToken;
 
 
     private Question[] mQuestionBank = new Question[]{
@@ -37,8 +37,10 @@ public class MainActivity extends AppCompatActivity {
     };
 
     private int mCurrentIndex = 0;
-    //  private int mScore = 0;
+    private int numOfTrials = 0;
     private boolean mIsCheater;
+    private boolean isClicked;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
         mTrueButton = findViewById(R.id.true_button);
         mFalseButton = findViewById(R.id.false_button);
         mQuestionTextView = findViewById(R.id.question_text_view);
+        mCheatToken = findViewById(R.id.cheat_token);
         updateQuestion();
-
 
         mTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,19 +107,33 @@ public class MainActivity extends AppCompatActivity {
                 updateQuestion();
             }
         });
-
         mPreviousButton.setEnabled(false);
 
         mCheatButton = findViewById(R.id.cheat_button);
         mCheatButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //start cheat activity
-                boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
+               isClicked = true;
+               numOfTrials++;
+               /* boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
                 Intent intent = CheatActivity.newIntent(MainActivity.this, answerIsTrue);
-                startActivityForResult(intent, REQUEST_CODE_CHEAT);
+                startActivityForResult(intent, REQUEST_CODE_CHEAT);*/
+                if (isClicked){
+                    if (numOfTrials >= 3)
+                    mCheatButton.setVisibility(View.INVISIBLE);
+                }
             }
         });
+
+
+
+
+
+
+
+
+
+
 
 
     }
