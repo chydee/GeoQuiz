@@ -115,9 +115,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                isClicked = true;
                numOfTrials++;
-               /* boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
+                boolean answerIsTrue = mQuestionBank[mCurrentIndex].isAnswerTrue();
                 Intent intent = CheatActivity.newIntent(MainActivity.this, answerIsTrue);
-                startActivityForResult(intent, REQUEST_CODE_CHEAT);*/
+                startActivityForResult(intent, REQUEST_CODE_CHEAT);
                 if (isClicked){
                     if (numOfTrials >= 3)
                     mCheatButton.setVisibility(View.INVISIBLE);

@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.widget.Button;
@@ -44,17 +43,6 @@ public class CheatActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
-
-        if (savedInstanceState != null) {
-            mAnswerIsTrue = savedInstanceState.getBoolean("answer");
-            if (mAnswerIsTrue) {
-                mAnswerTextView.setText(R.string.true_button);
-            } else {
-                mAnswerTextView.setText(R.string.false_button);
-            }
-
-            mShowAnswerButton.setVisibility(View.INVISIBLE);
-        }
 
         mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
 
@@ -95,15 +83,6 @@ public class CheatActivity extends AppCompatActivity {
         String apiLevel = "API Level " + Build.VERSION.SDK;
         mShowAPILevel = findViewById(R.id.show_api_level);
         mShowAPILevel.setText(apiLevel);
-    }
-
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        Log.d(TAG, "onSaveInstance called ");
-        outState.putBoolean("answer", mAnswerIsTrue);
-        setAnswerShownResult(true);
     }
 
     private void setAnswerShownResult(boolean isAnswerShown){
