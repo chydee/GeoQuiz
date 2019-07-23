@@ -21,13 +21,12 @@ public class CheatActivity extends AppCompatActivity {
     private static final String EXTRA_ANSWER_IS_TRUE = "com.example.geoquiz.answer_is_true";
     private static final String EXTRA_ANSWER_SHOWN = "com.example.geoquiz.answer_shown";
 
-    private static final String KEY_INDEX = "index";
-
     private TextView mAnswerTextView;
 
     private boolean mAnswerIsTrue;
     private Button mShowAnswerButton;
     private TextView mShowAPILevel;
+    private boolean isClicked;
 
     public static Intent newIntent(Context packageContext, boolean answerIsTrue){
         Intent intent = new Intent(packageContext, CheatActivity.class);
@@ -44,6 +43,11 @@ public class CheatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cheat);
 
+        if (savedInstanceState != null){
+            isClicked = savedInstanceState.getBoolean("clicked");
+            mAnswerIsTrue = savedInstanceState.getBoolean("answerIsTrue");
+        }
+
         mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
 
         mAnswerTextView = findViewById(R.id.answer_text_view);
@@ -52,6 +56,8 @@ public class CheatActivity extends AppCompatActivity {
         mShowAnswerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                isClicked = true;
                 if (mAnswerIsTrue) {
                     mAnswerTextView.setText(R.string.true_button);
                 } else {
@@ -78,11 +84,21 @@ public class CheatActivity extends AppCompatActivity {
                 } else {
                     mShowAnswerButton.setVisibility(View.INVISIBLE);
                 }
+
+
             }
         });
+
         String apiLevel = "API Level " + Build.VERSION.SDK;
         mShowAPILevel = findViewById(R.id.show_api_level);
         mShowAPILevel.setText(apiLevel);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("clicked", isClicked);
+        outState.putBoolean("answerIsTrue", mAnswerIsTrue);
     }
 
     private void setAnswerShownResult(boolean isAnswerShown){
