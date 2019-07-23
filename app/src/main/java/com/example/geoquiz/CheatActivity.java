@@ -92,10 +92,10 @@ public class CheatActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
         Log.d(TAG, "onSaveInstance called ");
-        savedInstanceState.putBoolean(KEY_INDEX, mAnswerIsTrue);
+        outState.putBoolean(KEY_INDEX, mAnswerIsTrue);
         setAnswerShownResult(true);
     }
 
