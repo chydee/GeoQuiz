@@ -52,6 +52,8 @@ public class CheatActivity extends AppCompatActivity {
             } else {
                 mAnswerTextView.setText(R.string.false_button);
             }
+
+            mShowAnswerButton.setVisibility(View.INVISIBLE);
         }
 
         mAnswerIsTrue = getIntent().getBooleanExtra(EXTRA_ANSWER_IS_TRUE, false);
